@@ -14,7 +14,7 @@
       <p>7,020 道官方题目中意对照。看不懂的词点一下就懂，按真考的格式模拟，错题自动安排复习。</p>
       <a class="btn" href="download.html">下载 App</a><a class="btn soft" href="#features">看看功能</a>
     </div>
-    <div class="phone"><img src="img/hero.jpg" alt="点词查看中文意思的答题界面"></div>
+    <div class="car"><iframe src="brillo/car.html#bg=none&amp;ui=0" title="Brillo 开着小车去考驾照" scrolling="no"></iframe></div>
   </div>
 </header>
 
@@ -30,6 +30,18 @@
     <div class="feat"><h3>不注册也能用</h3><p>所有练习都可以直接开始，记录保存在手机上。想换手机或多设备同步时再登录。</p></div>
   </div>
 
+  <section class="meet">
+    <div class="meet-art"><iframe id="brillo" src="brillo/brillo.html#mood=idle" title="Brillo" scrolling="no"></iframe></div>
+    <div class="meet-text">
+      <h2 class="sec">认识 Brillo</h2>
+      <p class="lead">Brillo 是一只黄帽亚马逊鹦鹉，陪你一道一道刷题。答对了他会高兴，答错了他会陪你再来一次。点下面试试：</p>
+      <div class="chips">
+        <button data-play="correct">答对</button><button data-play="wrong">答错</button>
+        <button data-mood="dance">跳舞</button><button data-play="treat">奖励坚果</button><button data-mood="sleep">睡觉</button>
+      </div>
+    </div>
+  </section>
+
   <h2 class="sec" style="margin-top:48px">看看界面</h2>
   <div class="shots">
     <img src="img/s01.jpg" alt="点词查看意思" loading="lazy"><img src="img/s02.jpg" alt="答题后的中文解析" loading="lazy">
@@ -41,4 +53,17 @@
   <span class="lang">Quiz patente B con traduzione in cinese, aiuto parola per parola e simulazione d'esame. App non ufficiale.</span></p>
 </main>
 <footer><a href="download.html">下载</a><a href="support.html">帮助与联系</a><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a><br>© 2026 Massimo DONG · support@pativo.it</footer>
+<script>
+(function(){
+  var f=document.getElementById('brillo'), timer;
+  function send(m){ if(f&&f.contentWindow) f.contentWindow.postMessage(m,'*'); }
+  document.querySelectorAll('.chips button').forEach(function(b){
+    b.addEventListener('click',function(){
+      clearTimeout(timer);
+      if(b.dataset.play){ send({mood:'idle'}); send({play:b.dataset.play}); }
+      else { send({mood:b.dataset.mood}); timer=setTimeout(function(){ send({mood:'idle'}); },6000); }
+    });
+  });
+})();
+</script>
 </body></html>
